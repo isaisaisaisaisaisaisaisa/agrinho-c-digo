@@ -17,6 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function exibirMensagemSucesso() {
-    alert('Incrível! Você está vendo a lógica separada da estrutura.');
+    alert(' .');
     console.log('Interação realizada com sucesso no projeto Agrinho 2026.');
 }
