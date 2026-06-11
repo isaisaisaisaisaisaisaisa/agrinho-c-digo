@@ -401,7 +401,7 @@ function atualizarCalculoImpacto() {
 function firmarCompromisso() {
   usuarioProgresso.compromissosFirmados++;
   
-  const mensagem = `✨ Gratidão! Você se conectou a essa rede de regeneração.\n\nCompromissos firmados nesta sessão: ${usuarioProgresso.compromissosFirmados}\n\nCompartilhe esse conhecimento com sua comunidade para que possamos reflorestar mentes e práticas!`;
+  const mensagem = `✨ Gratidão! Você se conectou a essa rede de regeneração.\n\nCompromissos firmados nesta sessão: ${usuarioProgresso.compromissosFirmados}\n\nCompartilhe esse conhecimento com outras pessoas e inspira uma mudança coletiva!`;
   
   // Usa dialog nativa se disponível, senão usa alert
   if (window.confirm(mensagem + '\n\n(OK para continuar)')) {
