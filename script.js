@@ -204,6 +204,6 @@
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', inicializarInteracao);
     } else {
-        inicializarInteracao();
+        iniciarInteracao();
     }
 })();
