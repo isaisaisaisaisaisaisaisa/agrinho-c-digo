@@ -99,11 +99,154 @@ body {
     transform: translateY(-2px);
 }
 
+.card-informativo h2 {
+    color: var(--verde-floresta);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
 .card-informativo p {
     font-size: 1rem;
     color: var(--cor-texto-claro);
     margin-bottom: 1.5rem;
     line-height: 1.8;
+}
+
+.card-informativo strong {
+    color: var(--cor-texto-escuro);
+    font-weight: 600;
+}
+
+/* ============================================
+   RECOMENDAÇÃO CIENTÍFICA
+   ============================================ */
+.recomendacao-cientifica {
+    background: linear-gradient(135deg, #f0f8f4 0%, #e8f0ec 100%);
+    border: 2px solid var(--verde-agrinho);
+    border-radius: var(--raio-borda);
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+    box-shadow: var(--sombra-suave);
+}
+
+.recomendacao-cientifica h3 {
+    color: var(--verde-floresta);
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+}
+
+.item-recomendacao {
+    background-color: var(--branco-puro);
+    border-left: 4px solid var(--verde-escuro);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+    transition: var(--transicao);
+}
+
+.item-recomendacao:last-child {
+    margin-bottom: 0;
+}
+
+.item-recomendacao:hover {
+    box-shadow: var(--sombra-suave);
+    transform: translateX(4px);
+}
+
+.item-recomendacao h4 {
+    color: var(--verde-escuro);
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+}
+
+.item-recomendacao p {
+    color: var(--cor-texto-claro);
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+.item-recomendacao p:last-child {
+    margin-bottom: 0;
+}
+
+.item-recomendacao strong {
+    color: var(--verde-floresta);
+}
+
+.item-recomendacao em {
+    color: var(--verde-escuro);
+    font-style: italic;
+}
+
+/* ============================================
+   SEÇÃO AILTON KRENAK
+   ============================================ */
+.secao-krenak {
+    background: linear-gradient(135deg, #f9f5f0 0%, #faf8f6 100%);
+    border-radius: var(--raio-borda);
+    padding: 2rem var(--espacamento-base);
+    margin: 2rem 0;
+    box-shadow: var(--sombra-media);
+}
+
+.container-krenak {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.imagem-krenak {
+    text-align: center;
+}
+
+.imagem-krenak img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--raio-borda);
+    box-shadow: var(--sombra-media);
+    transition: var(--transicao);
+}
+
+.imagem-krenak img:hover {
+    transform: scale(1.02);
+    box-shadow: var(--sombra-forte);
+}
+
+.conteudo-krenak h3 {
+    color: var(--verde-floresta);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.frase-krenak {
+    background-color: var(--branco-puro);
+    border-left: 5px solid var(--verde-floresta);
+    border-radius: var(--raio-borda);
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    box-shadow: var(--sombra-suave);
+}
+
+.frase-krenak p {
+    font-size: 1.5rem;
+    color: var(--verde-floresta);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.8;
+}
+
+.frase-krenak footer {
+    font-style: normal;
+    color: var(--cor-texto-claro);
+    font-size: 0.95rem;
+}
+
+.frase-krenak cite {
+    font-style: normal;
+    color: var(--cor-texto-escuro);
+    font-weight: 600;
 }
 
 /* ============================================
@@ -293,6 +436,15 @@ body {
     text-decoration-thickness: 2px;
 }
 
+#texto-impacto ul {
+    margin-left: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+#texto-impacto li {
+    margin-bottom: 0.5rem;
+}
+
 /* ============================================
    RODAPÉ - Mobile First
    ============================================ */
@@ -384,6 +536,44 @@ body {
         width: 100%;
     }
 
+    .card-informativo {
+        padding: 2rem;
+    }
+
+    .card-informativo h2 {
+        font-size: 1.75rem;
+    }
+
+    .recomendacao-cientifica {
+        padding: 2rem;
+    }
+
+    .recomendacao-cientifica h3 {
+        font-size: 1.5rem;
+    }
+
+    .secao-krenak {
+        padding: 2.5rem;
+    }
+
+    .container-krenak {
+        flex-direction: row;
+        align-items: center;
+        gap: 2.5rem;
+    }
+
+    .imagem-krenak {
+        flex: 0 0 300px;
+    }
+
+    .conteudo-krenak {
+        flex: 1;
+    }
+
+    .frase-krenak p {
+        font-size: 1.75rem;
+    }
+
     #espaco-ancestral {
         padding: 2.5rem;
     }
@@ -428,6 +618,22 @@ body {
         padding: 3rem 2rem;
     }
 
+    .secao-krenak {
+        padding: 3rem;
+    }
+
+    .container-krenak {
+        gap: 3rem;
+    }
+
+    .imagem-krenak {
+        flex: 0 0 350px;
+    }
+
+    .frase-krenak p {
+        font-size: 2rem;
+    }
+
     #espaco-ancestral {
         padding: 3rem;
     }
@@ -466,7 +672,8 @@ body {
         color: black;
     }
 
-    .card-ancestral {
+    .card-ancestral,
+    .secao-krenak {
         page-break-inside: avoid;
     }
 }
