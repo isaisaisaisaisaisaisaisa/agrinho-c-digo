@@ -3,7 +3,8 @@ FILOSOFIA DA TERRA - SUSTENTABILIDADE NO CULTIVO ANCESTRAL
 
 ## �� Objetivo do Projeto
 
-Demonstrar como a tecnologia pode ser aplicada tanto no campo (através da agricultura de precisão) quanto na interface do usuário (através de ferramentas de acessibilidade nativas), garantindo que a informação sobre sustentabilidade chegue a todos.
+ transmitir o conhecimento em formato visual dinâmico, facilitando a compreensão do público geral sobre como as práticas ancestrais atuam na conservação da biodiversidade
+
 
 ---
 
@@ -16,11 +17,15 @@ Demonstrar como a tecnologia pode ser aplicada tanto no campo (através da agric
 * **Estrutura:** HTML5 Semântico.
 * **Estilização:** Tailwind CSS (via CDN).
 * **Tipografia:** Google Fonts.
-* **Interatividade:** JavaScript Vanilla (ES6+).
-* **Imagens:** Unsplash (Placeholder de alta qualidade).
+* **Interatividade:** JavaScript.
 
 ### �� Estrutura de Arquivos
 | Pasta/Arquivo | Descrição                                        |
 |---------------|----------------------------------------------------|
 | `index.html`  | Arquivo principal (Estrutura, Estilo e Lógica)     |
 | `README.md`   | Documentação do projeto                          |
+| `style.css`   | Visual e aparência do código - estiliza o HTML   |
+| `script.js`   | A interatividade do código - faz a página responder a ações |
+| `HTML`        | O HTML é como o "alicerce" de uma construção: sem ele, não há base para o CSS embelezar e o JavaScript fazer funcionar. |
+|---------------|-------------------------------------------------------------------------------------------------------------------------|
+---
