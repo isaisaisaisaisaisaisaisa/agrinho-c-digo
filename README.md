@@ -3,7 +3,7 @@ FILOSOFIA DA TERRA - SUSTENTABILIDADE NO CULTIVO ANCESTRAL
 
 ## �� Objetivo do Projeto
 
- transmitir o conhecimento em formato visual dinâmico, facilitando a compreensão do público geral sobre como as práticas ancestrais atuam na conservação da biodiversidade
+ Transmitir o conhecimento em formato visual dinâmico, facilitando a compreensão do público geral sobre como as práticas ancestrais atuam na conservação da biodiversidade
 
 
 ---
