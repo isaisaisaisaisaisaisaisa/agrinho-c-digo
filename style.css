@@ -1,20 +1,40 @@
-/* Central de Variáveis - Facilita a manutenção e garante consistência */
+/* ============================================
+   CENTRAL DE VARIÁVEIS - DESIGN SYSTEM
+   ============================================ */
 :root {
     --verde-agrinho: #2ecc71;
     --verde-escuro: #27ae60;
+    --verde-floresta: #2e5a44;
     --amarelo-destaque: #f1c40f;
     --cor-texto-escuro: #2d3436;
+    --cor-texto-claro: #636e72;
     --branco-puro: #ffffff;
-    --sombra-suave: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --cinza-luz: #f4efe6;
+    --cinza-medio: #ecf0f1;
+    --sombra-suave: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --sombra-media: 0 4px 12px rgba(0, 0, 0, 0.15);
+    --sombra-forte: 0 8px 24px rgba(0, 0, 0, 0.2);
+    --transicao: all 0.3s ease;
+    --espacamento-base: 1rem;
+    --raio-borda: 8px;
 }
 
-/* Reset Global - Garante que o site comece do zero em qualquer navegador */
+/* ============================================
+   RESET GLOBAL - Garante consistência
+   ============================================ */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
+/* ============================================
+   ESTILOS GLOBAIS - Body e Base
+   ============================================ */
 body {
     font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     color: var(--cor-texto-escuro);
@@ -23,4 +43,445 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+}
+
+/* ============================================
+   CABEÇALHO - Mobile First
+   ============================================ */
+.cabecalho {
+    background: linear-gradient(135deg, var(--verde-floresta) 0%, var(--verde-escuro) 100%);
+    color: var(--branco-puro);
+    padding: 2rem var(--espacamento-base);
+    text-align: center;
+    box-shadow: var(--sombra-media);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.cabecalho h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    animation: fadeInDown 0.6s ease;
+}
+
+.cabecalho p {
+    font-size: 0.95rem;
+    margin-top: 0.5rem;
+    opacity: 0.95;
+}
+
+/* ============================================
+   CONTEÚDO PRINCIPAL - Layout Mobile
+   ============================================ */
+.conteudo-principal {
+    flex: 1;
+    padding: 1.5rem var(--espacamento-base);
+    max-width: 100%;
+}
+
+/* ============================================
+   SEÇÃO DE CARTÃO INFORMATIVO
+   ============================================ */
+.card-informativo {
+    background: linear-gradient(135deg, var(--cinza-luz) 0%, var(--branco-puro) 100%);
+    border-left: 5px solid var(--verde-agrinho);
+    border-radius: var(--raio-borda);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--sombra-suave);
+    transition: var(--transicao);
+}
+
+.card-informativo:hover {
+    box-shadow: var(--sombra-media);
+    transform: translateY(-2px);
+}
+
+.card-informativo p {
+    font-size: 1rem;
+    color: var(--cor-texto-claro);
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+}
+
+/* ============================================
+   BOTÕES - Estilos Responsivos
+   ============================================ */
+.btn-primario,
+.btn-acao {
+    background-color: var(--verde-floresta);
+    color: var(--branco-puro);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    border-radius: var(--raio-borda);
+    font-size: 1rem;
+    font-weight: 600;
+    transition: var(--transicao);
+    box-shadow: var(--sombra-suave);
+    display: inline-block;
+    min-height: 44px;
+    min-width: 44px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.btn-primario:hover,
+.btn-primario:focus,
+.btn-acao:hover,
+.btn-acao:focus {
+    background-color: var(--verde-agrinho);
+    box-shadow: var(--sombra-media);
+    transform: translateY(-2px);
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+}
+
+.btn-primario:active,
+.btn-acao:active {
+    transform: translateY(0);
+}
+
+.btn-primario:focus-visible,
+.btn-acao:focus-visible {
+    outline: 2px solid var(--verde-floresta);
+    outline-offset: 2px;
+}
+
+.btn-acao-secundario {
+    background-color: #d2691e;
+}
+
+.btn-acao-secundario:hover,
+.btn-acao-secundario:focus {
+    background-color: #c26a1a;
+}
+
+/* ============================================
+   PAINEL ANCESTRAL - Seção Interativa
+   ============================================ */
+#espaco-ancestral {
+    padding: 1.5rem var(--espacamento-base);
+    background-color: var(--cinza-medio);
+    border-radius: var(--raio-borda);
+    margin: 1.5rem 0;
+}
+
+#espaco-ancestral h2 {
+    font-size: 1.5rem;
+    color: var(--verde-floresta);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+#espaco-ancestral > p {
+    text-align: center;
+    color: var(--cor-texto-claro);
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
+
+/* ============================================
+   CARDS ANCESTRAIS - Grid Mobile-First
+   ============================================ */
+#lista-tecnicas {
+    display: grid;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.card-ancestral {
+    background: var(--cinza-luz);
+    border-left: 5px solid var(--verde-floresta);
+    border-radius: var(--raio-borda);
+    padding: 1.5rem;
+    box-shadow: var(--sombra-suave);
+    transition: var(--transicao);
+}
+
+.card-ancestral:hover {
+    box-shadow: var(--sombra-media);
+    transform: translateY(-4px);
+}
+
+.card-ancestral h3 {
+    color: var(--verde-floresta);
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+}
+
+.card-ancestral p {
+    color: var(--cor-texto-claro);
+    margin-bottom: 0.75rem;
+    line-height: 1.7;
+}
+
+.card-ancestral strong {
+    color: var(--cor-texto-escuro);
+}
+
+.card-ancestral p[style*="font-style"] {
+    color: var(--verde-escuro);
+    font-style: italic;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(46, 90, 68, 0.2);
+}
+
+/* ============================================
+   SIMULADOR DE IMPACTO
+   ============================================ */
+.resultado-painel {
+    background: linear-gradient(135deg, #e8f0ec 0%, #f0f8f4 100%);
+    padding: 1.5rem;
+    border-radius: var(--raio-borda);
+    box-shadow: var(--sombra-suave);
+    border: 2px solid var(--verde-agrinho);
+}
+
+.resultado-painel h3 {
+    color: var(--verde-floresta);
+    margin-bottom: 1.5rem;
+    font-size: 1.25rem;
+}
+
+.resultado-painel label {
+    display: block;
+    color: var(--cor-texto-escuro);
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+}
+
+.resultado-painel input {
+    width: 100%;
+    max-width: 200px;
+    padding: 0.75rem;
+    border: 2px solid var(--verde-agrinho);
+    border-radius: var(--raio-borda);
+    font-size: 1rem;
+    transition: var(--transicao);
+    background-color: var(--branco-puro);
+}
+
+.resultado-painel input:focus {
+    outline: none;
+    border-color: var(--verde-floresta);
+    box-shadow: 0 0 0 3px rgba(46, 90, 68, 0.1);
+}
+
+#texto-impacto {
+    margin-top: 1.5rem;
+    color: var(--verde-floresta);
+    font-size: 0.95rem;
+    line-height: 1.8;
+    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: var(--raio-borda);
+}
+
+#texto-impacto strong {
+    color: var(--verde-floresta);
+    font-weight: 700;
+}
+
+#texto-impacto u {
+    text-decoration: underline;
+    text-decoration-color: var(--amarelo-destaque);
+    text-decoration-thickness: 2px;
+}
+
+/* ============================================
+   RODAPÉ - Mobile First
+   ============================================ */
+.rodape {
+    background-color: var(--verde-floresta);
+    color: var(--branco-puro);
+    text-align: center;
+    padding: 2rem var(--espacamento-base);
+    margin-top: auto;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.rodape p {
+    font-size: 0.9rem;
+    opacity: 0.95;
+}
+
+/* ============================================
+   ANIMAÇÕES
+   ============================================ */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================
+   ACESSIBILIDADE - Foco Visível
+   ============================================ */
+:focus-visible {
+    outline: 2px solid var(--verde-floresta);
+    outline-offset: 2px;
+}
+
+/* Remove foco padrão apenas para cliques de mouse */
+:focus:not(:focus-visible) {
+    outline: none;
+}
+
+/* ============================================
+   MODO ESCURO - Suporte (opcional)
+   ============================================ */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --branco-puro: #1a1a1a;
+        --cor-texto-escuro: #e0e0e0;
+        --cor-texto-claro: #a0a0a0;
+        --cinza-luz: #2a2a2a;
+        --cinza-medio: #1f1f1f;
+    }
+
+    body {
+        background-color: #1a1a1a;
+    }
+}
+
+/* ============================================
+   TABLET - 768px e acima
+   ============================================ */
+@media (min-width: 768px) {
+    .cabecalho h1 {
+        font-size: 2.25rem;
+    }
+
+    .cabecalho {
+        padding: 2.5rem;
+    }
+
+    .conteudo-principal {
+        padding: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    #espaco-ancestral {
+        padding: 2.5rem;
+    }
+
+    #espaco-ancestral h2 {
+        font-size: 1.75rem;
+    }
+
+    #lista-tecnicas {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+
+    .card-ancestral {
+        padding: 2rem;
+    }
+
+    .resultado-painel {
+        padding: 2rem;
+    }
+
+    .btn-primario,
+    .btn-acao {
+        padding: 0.875rem 2rem;
+        font-size: 1.05rem;
+    }
+}
+
+/* ============================================
+   DESKTOP - 1024px e acima
+   ============================================ */
+@media (min-width: 1024px) {
+    .cabecalho h1 {
+        font-size: 2.75rem;
+    }
+
+    .cabecalho {
+        padding: 3rem 2rem;
+    }
+
+    .conteudo-principal {
+        padding: 3rem 2rem;
+    }
+
+    #espaco-ancestral {
+        padding: 3rem;
+    }
+
+    #espaco-ancestral h2 {
+        font-size: 2rem;
+    }
+
+    #lista-tecnicas {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2.5rem;
+    }
+
+    .card-ancestral {
+        padding: 2.5rem;
+    }
+
+    .resultado-painel {
+        padding: 2.5rem;
+    }
+
+    .resultado-painel input {
+        max-width: 300px;
+    }
+}
+
+/* ============================================
+   IMPRESSÃO
+   ============================================ */
+@media print {
+    .cabecalho,
+    .rodape,
+    .btn-primario,
+    .btn-acao {
+        background-color: #f0f0f0;
+        color: black;
+    }
+
+    .card-ancestral {
+        page-break-inside: avoid;
+    }
+}
+
+/* ============================================
+   REDUZ MOVIMENTO - Respeita preferências de acessibilidade
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    html {
+        scroll-behavior: auto;
+    }
 }
