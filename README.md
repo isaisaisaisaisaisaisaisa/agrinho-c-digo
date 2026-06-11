@@ -27,5 +27,4 @@ FILOSOFIA DA TERRA - SUSTENTABILIDADE NO CULTIVO ANCESTRAL
 | `style.css`   | Visual e aparência do código - estiliza o HTML   |
 | `script.js`   | A interatividade do código - faz a página responder a ações |
 | `HTML`        | O HTML é como o "alicerce" de uma construção: sem ele, não há base para o CSS embelezar e o JavaScript fazer funcionar. |
-|---------------|-------------------------------------------------------------------------------------------------------------------------|
----
+|---------------|-------------------------------------------------------------------------------------------------------------------|
