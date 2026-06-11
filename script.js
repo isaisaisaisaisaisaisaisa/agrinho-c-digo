@@ -1,10 +1,10 @@
 /**
  * AncestralCrop.js - Versão Sabedoria Indígena Brasileira
- * Solução interativa para o ecossistema do GitHub.
+ * Componente interativo autônomo para sites hospedados no GitHub.
  */
 
 (function() {
-    // 1. Injeção automática dos estilos CSS estilizados com as cores da nossa terra
+    // 1. Injeção dinâmica dos estilos CSS com paleta inspirada na terra e biodiversidade nativa
     const estilos = `
         .ancestral-container {
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -18,6 +18,7 @@
         }
         .ancestral-header { text-align: center; margin-bottom: 20px; }
         .ancestral-header h2 { color: #5d4037; margin: 0 0 10px 0; font-size: 1.6rem; }
+        .ancestral-header p { color: #6d4c41; font-size: 0.95rem; line-height: 1.5; }
         .ancestral-grid {
             display: flex;
             gap: 15px;
@@ -84,31 +85,31 @@
     estiloElemento.textContent = estilos;
     document.head.appendChild(estiloElemento);
 
-    // 2. Banco de dados fundamentado no Sistema Agrícola Tradicional da Amazônia e Mata Atlântica
+    // 2. Banco de dados do conhecimento biológico das roças tradicionais (Mandioca, Feijão-de-Corda e Cará)
     const sabedoriaIndigena = {
         mandioca: {
             nome: "Mandioca",
             icone: "🌿",
             funcao: "A Base da Roça",
-            sinergia: "Planta soberana nas roças indígenas. Suas raízes estruturam o solo e toleram períodos extremos de seca, servindo de base para a segurança alimentar e sombreamento inicial."
+            sinergia: "Planta soberana no manejo agrícola indígena. Suas raízes profundas estruturam fisicamente o solo e toleram longos períodos de seca, oferecendo sombreamento e estabilidade para as outras plantas."
         },
         feijao: {
             nome: "Feijão-de-Corda",
             icone: "🫘",
             funcao: "O Nutritivo",
-            sinergia: "Se adapta perfeitamente aos solos brasileiros. Fixa o nitrogênio do ar diretamente na terra através de microrganismos simbólicos, adubando as plantas vizinhas de forma biológica."
+            sinergia: "Fixa o nitrogênio do ar diretamente na terra através de uma relação simbiótica com bactérias em suas raízes. Isso nutre o solo de forma 100% natural, dispensando adubos químicos artificiais."
         },
         cara: {
             nome: "Cará",
             icone: "🥔",
-            funcao: "O Protetor do Solo",
-            sinergia: "Trepadeira nativa que se espalha pelos galhos caídos ou base da mandioca. Suas folhas protegem o solo contra o impacto direto da chuva tropical, evitando a erosão e mantendo a umidade."
+            funcao: "O Protetor",
+            sinergia: "Trepadeira nativa que cobre os galhos secos e o chão. Suas folhas largas agem como um escudo contra o impacto das chuvas fortes, reduzindo a erosão e mantendo a umidade do ecossistema."
         }
     };
 
     const selecao = new Set();
 
-    // 3. Inicialização e montagem do HTML dinâmico
+    // 3. Montagem da interface dentro do elemento âncora
     function inicializarInteracao() {
         let alvo = document.getElementById('ancestral-root');
         if (!alvo) {
@@ -121,11 +122,11 @@
             <div class="ancestral-container">
                 <div class="ancestral-header">
                     <h2>Consórcio de Roça Tradicional Indígena 🏹</h2>
-                    <p>Combine os cultivos do manejo agroflorestal nativo do Brasil para simular a criação de uma <strong>Terra Preta de Índio</strong> hiper-fértil.</p>
+                    <p>Combine os três pilares do cultivo nativo brasileiro e descubra como o manejo ancestral cria ecossistemas de alta fertilidade inspirados na <strong>Terra Preta de Índio</strong>.</p>
                 </div>
                 <div class="ancestral-grid" id="ancestral-grid"></div>
                 <div class="ancestral-painel" id="ancestral-painel">
-                    <p id="ancestral-texto">Selecione as plantas nativas acima para entender o manejo biológico do solo.</p>
+                    <p id="ancestral-texto">Selecione os cultivos acima para ativar as interações agroecológicas.</p>
                     <div id="ancestral-status"></div>
                 </div>
             </div>
@@ -146,7 +147,7 @@
         });
     }
 
-    // 4. Processamento da sinergia ecológica
+    // 4. Lógica de controle do ecossistema e cálculo da sinergia
     function alternarPlanta(chave, elemento) {
         if (selecao.has(chave)) {
             selecao.delete(chave);
@@ -163,27 +164,27 @@
         const status = document.getElementById('ancestral-status');
 
         if (selecao.size === 0) {
-            texto.innerHTML = "Selecione as plantas nativas acima para entender o manejo biológico do solo.";
+            texto.innerHTML = "Selecione os cultivos acima para ativar as interações agroecológicas.";
             status.innerHTML = "";
             return;
         }
 
         if (selecao.size === 3) {
             texto.innerHTML = `
-                <strong>✨ Sinergia da Biodiversidade Nativa Ativada! ✨</strong><br><br>
-                Você recriou o policultivo das roças de coivara brasileiras. O uso combinado dessas três espécies nativas dispensa arados mecânicos e venenos, permitindo que a floresta se regenere sozinha após a colheita, enriquecendo o solo com matéria orgânica duradoura.
+                <strong>✨ Sinergia Agroflorestal Concluída! ✨</strong><br><br>
+                Ao unir <strong>Mandioca, Feijão-de-Corda e Cará</strong>, você simulou o ciclo regenerativo ideal. Essa policultura protege a biodiversidade microbiana subterrânea, reduz a evaporação da água e enriquece o solo através do manejo biológico de biomassa, promovendo a regeneração contínua.
             `;
             status.innerHTML = `
                 <div class="status-badge completo">Fertilidade Estilo 'Terra Preta de Índio' (100%)</div>
                 <br>
-                <button class="ancestral-btn" onclick="window.open('https://github.com', '_blank')">
-                    Apoiar a Agroecologia no Mundo Real
+                <button class="ancestral-btn" onclick="alert('Conexão simulada! Esta ação acionaria o download de técnicas ou integraria o usuário ao banco de dados agroecológico.')">
+                    Disseminar Prática no Mundo Real
                 </button>
             `;
             return;
         }
 
-        // Fluxo intermediário para 1 ou 2 plantas
+        // Relatório para estados parciais (1 ou 2 plantas)
         let relatorio = "";
         selecao.forEach(chave => {
             const p = sabedoriaIndigena[chave];
@@ -194,12 +195,12 @@
         status.innerHTML = `
             <div class="status-badge">Solo em Transição Ecológica (${selecao.size * 33}%)</div>
             <p style="font-size: 0.85rem; margin-top: 10px; color: #8d6e63;">
-                Adicione Mandioca, Feijão-de-Corda e Cará simultaneamente para atingir o equilíbrio de uma roça sustentável.
+                Combine os três elementos para atingir o equilíbrio de biodiversidade ideal do bioma.
             </p>
         `;
     }
 
-    // Execução segura pós-carregamento do DOM
+    // Inicialização segura baseada no ciclo de vida do DOM
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', inicializarInteracao);
     } else {
