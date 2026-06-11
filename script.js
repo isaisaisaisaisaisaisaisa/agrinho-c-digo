@@ -14,6 +14,9 @@
  * - Validação de entrada robusta
  * - Tratamento de erros
  * - Performance otimizada
+ * - Modo escuro com persistência
+ * - Controle dinâmico de tamanho de fonte
+ * - Atalhos de teclado para acessibilidade
  */
 
 // ============================================
@@ -23,7 +26,7 @@ const sabedoriaAncestral = {
   milpa: {
     nome: "Sistema Milpa / Três Irmãs (Adaptado)",
     povos: "Povos de diversas etnias (Guarani, Tupinambá)",
-    descricao: "Consórcio entre milho, feijão e abóbora. O milho serve de tutor para o feijão, o feijão fixa nitrogênio no solo, e a abóbora cobre a terra mantendo a umidade e evitando ervas daninhas.",
+    descricao: "Consórcio entre milho, feijão e abóbora. O milho serve de tutor para o feijão, o feijão fixa nitrogênio no solo, e a abóbora cobre a terra mantendo a umidade e evitando erva daninha.",
     beneficioAmbiental: "Elimina a necessidade de fertilizantes químicos e reduz o uso de água em até 30%.",
     fatorRegeneracao: 1.5,
     emoji: "🌽"
@@ -54,11 +57,6 @@ const usuarioProgresso = {
   areaSimuladaM2: 0,
   compromissosFirmados: 0,
   
-  // ✅ CORRECTED: Sem espaço em 'compromissosFirmados'
-  
-  /**
-   * Reseta o progresso do usuário
-   */
   resetar() {
     this.tecnicaSelecionada = null;
     this.areaSimuladaM2 = 0;
@@ -66,7 +64,217 @@ const usuarioProgresso = {
 };
 
 // ============================================
-// 3. FUNÇÕES UTILITÁRIAS - Validação e Helpers
+// 3. GERENCIADOR DE ACESSIBILIDADE
+// ============================================
+const gerenciadorAcessibilidade = {
+  // Escala de fonte: 0.8 = 80%, 1.0 = 100%, 1.2 = 120%, etc.
+  escalaFonteMin: 0.8,
+  escalaFonteMax: 1.5,
+  escalaFonteStep: 0.1,
+  escalaFonteAtual: 1.0,
+  
+  // Chaves de localStorage
+  chaveModoEscuro: 'filosofia-terra-modo-escuro',
+  chaveEscalaFonte: 'filosofia-terra-escala-fonte',
+
+  /**
+   * Inicializa o gerenciador de acessibilidade
+   */
+  inicializar() {
+    this.carregarPreferencias();
+    this.anexarEventos();
+    this.aplicarEscala();
+    this.atualizarIndicadorFonte();
+  },
+
+  /**
+   * Carrega preferências salvas do localStorage
+   */
+  carregarPreferencias() {
+    // Carregar modo escuro
+    const modoEscuroSalvo = localStorage.getItem(this.chaveModoEscuro);
+    if (modoEscuroSalvo === 'true') {
+      this.ativarModoEscuro(false); // false = não salvar novamente
+    }
+
+    // Carregar escala de fonte
+    const escalaSalva = localStorage.getItem(this.chaveEscalaFonte);
+    if (escalaSalva) {
+      this.escalaFonteAtual = parseFloat(escalaSalva);
+    }
+  },
+
+  /**
+   * Anexa eventos aos botões de acessibilidade
+   */
+  anexarEventos() {
+    const btnModoEscuro = document.getElementById('btn-modo-escuro');
+    const btnAumentarFonte = document.getElementById('btn-aumentar-fonte');
+    const btnDiminuirFonte = document.getElementById('btn-diminuir-fonte');
+    const btnResetarFonte = document.getElementById('btn-resetar-font');
+
+    if (btnModoEscuro) {
+      btnModoEscuro.addEventListener('click', () => this.alternarModoEscuro());
+    }
+
+    if (btnAumentarFonte) {
+      btnAumentarFonte.addEventListener('click', () => this.aumentarFonte());
+    }
+
+    if (btnDiminuirFonte) {
+      btnDiminuirFonte.addEventListener('click', () => this.diminuirFonte());
+    }
+
+    if (btnResetarFonte) {
+      btnResetarFonte.addEventListener('click', () => this.resetarFonte());
+    }
+
+    // Atalhos de teclado
+    document.addEventListener('keydown', (e) => this.tratarAtalhos(e));
+  },
+
+  /**
+   * Trata atalhos de teclado
+   * D = Modo Escuro
+   * + = Aumentar Fonte
+   * - = Diminuir Fonte
+   * R = Resetar Fonte
+   */
+  tratarAtalhos(evento) {
+    const tecla = evento.key.toUpperCase();
+    
+    // Ignorar se o usuário está digitando em um input
+    if (evento.target.tagName === 'INPUT' || evento.target.tagName === 'TEXTAREA') {
+      return;
+    }
+
+    switch (tecla) {
+      case 'D':
+        evento.preventDefault();
+        this.alternarModoEscuro();
+        break;
+      case '+':
+      case '=':
+        evento.preventDefault();
+        this.aumentarFonte();
+        break;
+      case '-':
+      case '_':
+        evento.preventDefault();
+        this.diminuirFonte();
+        break;
+      case 'R':
+        evento.preventDefault();
+        this.resetarFonte();
+        break;
+    }
+  },
+
+  /**
+   * Alterna modo escuro
+   */
+  alternarModoEscuro() {
+    document.body.classList.toggle('modo-escuro');
+    const ativado = document.body.classList.contains('modo-escuro');
+    
+    localStorage.setItem(this.chaveModoEscuro, ativado);
+    
+    const btnModoEscuro = document.getElementById('btn-modo-escuro');
+    if (btnModoEscuro) {
+      btnModoEscuro.setAttribute('aria-label', 
+        ativado ? 'Desativar modo escuro' : 'Ativar modo escuro'
+      );
+      btnModoEscuro.textContent = ativado ? '☀️ Modo Claro' : '🌙 Modo Escuro';
+    }
+
+    console.log(`${ativado ? '🌙' : '☀️'} Modo escuro ${ativado ? 'ativado' : 'desativado'}`);
+  },
+
+  /**
+   * Ativa modo escuro sem alternar
+   */
+  ativarModoEscuro(salvar = true) {
+    document.body.classList.add('modo-escuro');
+    
+    if (salvar) {
+      localStorage.setItem(this.chaveModoEscuro, true);
+    }
+
+    const btnModoEscuro = document.getElementById('btn-modo-escuro');
+    if (btnModoEscuro) {
+      btnModoEscuro.setAttribute('aria-label', 'Desativar modo escuro');
+      btnModoEscuro.textContent = '☀️ Modo Claro';
+    }
+  },
+
+  /**
+   * Aumenta tamanho da fonte
+   */
+  aumentarFonte() {
+    if (this.escalaFonteAtual < this.escalaFonteMax) {
+      this.escalaFonteAtual = Math.min(
+        this.escalaFonteMax,
+        parseFloat((this.escalaFonteAtual + this.escalaFonteStep).toFixed(1))
+      );
+      this.aplicarEscala();
+      this.salvarEscala();
+    }
+  },
+
+  /**
+   * Diminui tamanho da fonte
+   */
+  diminuirFonte() {
+    if (this.escalaFonteAtual > this.escalaFonteMin) {
+      this.escalaFonteAtual = Math.max(
+        this.escalaFonteMin,
+        parseFloat((this.escalaFonteAtual - this.escalaFonteStep).toFixed(1))
+      );
+      this.aplicarEscala();
+      this.salvarEscala();
+    }
+  },
+
+  /**
+   * Reseta fonte para padrão
+   */
+  resetarFonte() {
+    this.escalaFonteAtual = 1.0;
+    this.aplicarEscala();
+    this.salvarEscala();
+  },
+
+  /**
+   * Aplica a escala de fonte ao documento
+   */
+  aplicarEscala() {
+    document.documentElement.style.setProperty('--escala-fonte', this.escalaFonteAtual);
+    this.atualizarIndicadorFonte();
+  },
+
+  /**
+   * Atualiza o indicador de tamanho da fonte na UI
+   */
+  atualizarIndicadorFonte() {
+    const display = document.getElementById('tamanho-fonte-display');
+    if (display) {
+      const percentual = Math.round(this.escalaFonteAtual * 100);
+      display.textContent = `${percentual}%`;
+      display.setAttribute('aria-label', `Tamanho da fonte: ${percentual}%`);
+    }
+  },
+
+  /**
+   * Salva escala de fonte no localStorage
+   */
+  salvarEscala() {
+    localStorage.setItem(this.chaveEscalaFonte, this.escalaFonteAtual.toFixed(1));
+    console.log(`📝 Tamanho de fonte salvo: ${Math.round(this.escalaFonteAtual * 100)}%`);
+  }
+};
+
+// ============================================
+// 4. FUNÇÕES UTILITÁRIAS - Validação e Helpers
 // ============================================
 
 /**
@@ -116,7 +324,7 @@ function sanitizarTexto(texto) {
 }
 
 // ============================================
-// 4. RENDERIZAÇÃO - Interface Interativa
+// 5. RENDERIZAÇÃO - Interface Interativa
 // ============================================
 
 /**
@@ -305,7 +513,7 @@ function handleBotoesAcao(evento) {
 }
 
 // ============================================
-// 5. LÓGICA DE NEGÓCIO - Cálculos e Impacto
+// 6. LÓGICA DE NEGÓCIO - Cálculos e Impacto
 // ============================================
 
 /**
@@ -401,7 +609,7 @@ function atualizarCalculoImpacto() {
 function firmarCompromisso() {
   usuarioProgresso.compromissosFirmados++;
   
-  const mensagem = `✨ Gratidão! Você se conectou a essa rede de regeneração.\n\nCompromissos firmados nesta sessão: ${usuarioProgresso.compromissosFirmados}\n\nCompartilhe esse conhecimento com outras pessoas e inspira uma mudança coletiva!`;
+  const mensagem = `✨ Gratidão! Você se conectou a essa rede de regeneração.\n\nCompromissos firmados nesta sessão: ${usuarioProgresso.compromissosFirmados}\n\nCompartilhe esse conhecimento com sua comunidade!`;
   
   // Usa dialog nativa se disponível, senão usa alert
   if (window.confirm(mensagem + '\n\n(OK para continuar)')) {
@@ -410,7 +618,7 @@ function firmarCompromisso() {
 }
 
 // ============================================
-// 6. INICIALIZAÇÃO - Executa quando o DOM está pronto
+// 7. INICIALIZAÇÃO - Executa quando o DOM está pronto
 // ============================================
 
 /**
@@ -418,6 +626,11 @@ function firmarCompromisso() {
  */
 function iniciarAplicacao() {
   console.log('✅ Aplicação iniciada com sucesso');
+  
+  // Inicializar gerenciador de acessibilidade
+  gerenciadorAcessibilidade.inicializar();
+  
+  // Inicializar painel ancestral
   inicializarPainelAncestral();
 }
 
@@ -430,7 +643,7 @@ if (document.readyState === 'loading') {
 }
 
 // ============================================
-// 7. TRATAMENTO DE ERROS GLOBAL
+// 8. TRATAMENTO DE ERROS GLOBAL
 // ============================================
 
 window.addEventListener('error', (evento) => {
